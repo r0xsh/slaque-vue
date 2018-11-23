@@ -1,0 +1,26 @@
+[entryPoints]
+  [entryPoints.http]
+  address = ":9000"
+
+[file]
+
+[frontends]
+  [frontends.spa]
+  entryPoints = ["http"]
+  backend = "dev_server"
+  [frontends.api]
+  entryPoints = ["http"]
+  backend = "django"
+    [frontends.api.routes.api]
+    rule = "PathPrefix: /api/"
+
+[backends]
+  [backends.dev_server]
+    [backends.dev_server.servers]
+      [backends.dev_server.servers.elmreactor]
+      url = "http://localhost:8081"
+
+  [backends.django]
+    [backends.django.servers]
+      [backends.django.servers.server1]
+      url = "http://localhost:80"
