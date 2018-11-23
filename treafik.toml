@@ -1,6 +1,6 @@
 [entryPoints]
   [entryPoints.http]
-  address = ":9000"
+  address = ":80"
 
 [file]
 
@@ -13,6 +13,11 @@
   backend = "django"
     [frontends.api.routes.api]
     rule = "PathPrefix: /api/"
+  [frontends.ws]
+  entryPoints = ['http']
+  backend = "ws"
+    [frontends.ws.routes.ws]
+    rule = "PathPrefix: /ws"
 
 [backends]
   [backends.dev_server]
@@ -23,4 +28,9 @@
   [backends.django]
     [backends.django.servers]
       [backends.django.servers.server1]
-      url = "http://localhost:80"
+      url = "http://localhost:8082"
+
+  [backends.ws]
+    [backends.ws.servers]
+      [backends.ws.servers.server1]
+      url = "http://localhost:47187"

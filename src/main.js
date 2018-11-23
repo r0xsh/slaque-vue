@@ -12,7 +12,7 @@ export default new Vue({
   router,
   store,
   created: function() {
-    this.$ws = new WebSocket('ws://localhost:47187')
+    this.$ws = new WebSocket(`ws://${window.location.host}/ws`)
     this.$ws.onmessage = socket
   },
   render: h => h(App)
